@@ -6,15 +6,8 @@
       <img src="{{ url_for('static', filename='images/earth.png') }}">
       <h2>Welcome to My App</h2>
       <h3>This is the home page for My App and it is currently under heavy construction.</h3>
-      <h3>Interested? Enter your e-mail below to get the latest news and updates! </h3>
-
-      <form action="{{ url_for('send_interest') }}" method=POST>
-        <dl>
-          <dt>E-mail:</dt>
-          <dd><input name="email" type="text"></input></dd>
-          <dd><input type="submit"></input></dd>
-        </dl>
-      </form>
+      <h3>Interested? Sign up below to get the latest news and updates! </h3>
+      <a class="sign-up-button" href="{{ url_for('signup') }}">Sign Up!</a>
     </div>
   </div>
 

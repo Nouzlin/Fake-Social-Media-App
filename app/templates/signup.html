@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+  <form action="{{ url_for('new_signup') }}" method="POST">
+    <dl>
+      <dt>E-mail:</dt>
+        <dd><input name="firstName" type="text" placeholder="First Name"></dd>
+        <dd><input name="lastName" type="text" placeholder="Last Name"></dd>
+        <dd><input name="age" type="id" placeholder="Age"></dd>
+        <dd><input name="country" type="text" placeholder="Country"></dd>
+        <dd><input name="city" type="text" placeholder="City"></dd>
+        <dd><input name="reference" type="text" placeholder="Reference"></dd>
+        <dd><input type="submit"></dd>
+    </dl>
+  </form>
+{% endblock %}
