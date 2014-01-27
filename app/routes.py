@@ -22,11 +22,11 @@ def signup():
 
 @app.route("/new_signup", methods=['POST'])
 def new_signup():
-    info = [request.form['firstName'], request.form['lastName'], request.form['age'],
+    info = [request.form['firstName'], request.form['lastName'], request.form['email'],
             request.form['country'], request.form['city'], request.form['reference']]
     database.add_message(app, info)
     return render_template('register_completed.html')
 
 if __name__ == "__main__":
-    database.init(app)
+    #database.init(app)
     app.run(debug=True)

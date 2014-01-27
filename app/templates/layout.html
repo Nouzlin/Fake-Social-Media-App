@@ -24,7 +24,13 @@
 	  </header>
 
       <div class="main-container">
-        {% block main_content %}
+        <div class="container">
+          <div class="row">
+            {% block main_content %}
+            {% endblock %}
+          </div>
+        </div>
+        {% block landing_content %}
         {% endblock %}
       </div>
 	</div>

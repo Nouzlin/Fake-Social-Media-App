@@ -1,16 +1,17 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
-  <div class="container">
-    <div class="row">
-      <img src="{{ url_for('static', filename='images/earth.png') }}">
-      <h2>Welcome to My App</h2>
-      <h3>This is the home page for My App and it is currently under heavy construction.</h3>
-      <h3>Interested? Sign up below to get the latest news and updates! </h3>
-      <a class="sign-up-button" href="{{ url_for('signup') }}">Sign Up!</a>
-    </div>
-  </div>
+  <img src="{{ url_for('static', filename='images/earth.png') }}">
+  <h2>Welcome to My App</h2>
+  <h3>This is the home page for My App and it is currently under heavy construction.</h3>
+  <h3>Interested? Sign up below to get the latest news and updates! </h3>
 
+  <form action="{{ url_for('signup') }}">
+    <button class="button" type="submit">Sign up</button>
+  </form>
+{% endblock %}
+
+{% block landing_content %}
   <div id="landing-container">
     <div class="gradient" id="yellow-divider">
       <section class="mid-container">
@@ -64,6 +65,5 @@
           </div>
       </section>
     </div>
-
   </div>
 {% endblock %}

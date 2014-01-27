@@ -22,7 +22,7 @@ def init(app):
 
 def add_message(app, info):
     db = get_db(app)
-    first_name, last_name, age, country, city, reference = info
-    db.execute("insert into signups (FirstName, LastName, Age, Country, City, Reference) values (?, ?, ?, ?, ?, ?)",
-               (first_name, last_name, age, country, city, reference))
+    first_name, last_name, email, country, city, reference = info
+    db.execute("insert into signups (FirstName, LastName, Email, Country, City, Reference) values (?, ?, ?, ?, ?, ?)",
+               (first_name, last_name, email, country, city, reference))
     db.commit()
