@@ -13,11 +13,15 @@ def home():
 def about():
     return render_template('about.html')
 
-@app.route("/send_interest", methods=['POST'])
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route("/register_complete", methods=['POST'])
 def send_interest():
     email = request.form['email']
     #my_db.add_message(email)
-    return render_template('interest_sent.html')
+    return render_template('register_complete.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
