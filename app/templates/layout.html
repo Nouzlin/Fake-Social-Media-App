@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>My App</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+	<div id="wrapper">
+      <header>
+        <div class="container">
+          <div class="row">
+            <h1 id="logo">
+			  <a class="logo-link" href="{{ url_for('home') }}">Logo(tm)</a>
+		    </h1>
+
+		    <nav class="nav">
+              <ul class="menu">
+			    <li><a href="{{ url_for('home') }}">Home</a></li>
+			    <li><a href="{{ url_for('about') }}">About</a></li>
+			  </ul>
+		    </nav>
+		  </div>
+	    </div>
+	  </header>
+
+      <div class="main-container">
+        {% block main_content %}
+        {% endblock %}
+      </div>
+	</div>
+
+    <footer>
+      <div class="info">
+
+      </div>
+    </footer>
+  </body>
+</html>

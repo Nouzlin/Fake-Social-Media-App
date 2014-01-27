@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+  <div class="container">
+    <div class="row">
+      <img src="{{ url_for('static', filename='images/earth.png') }}">
+      <h2>Welcome to My App</h2>
+      <h3>This is the home page for My App and it is currently under heavy construction.</h3>
+      <h3>Interested? Enter your e-mail below to get the latest news and updates! </h3>
+
+      <form action="{{ url_for('send_interest') }}" method=POST>
+        <dl>
+          <dt>E-mail:</dt>
+          <dd><input name="email" type="text"></input></dd>
+          <dd><input type="submit"></input></dd>
+        </dl>
+      </form>
+    </div>
+  </div>
+
+  <div id="landing-container">
+    <div class="gradient" id="yellow-divider">
+      <section class="mid-container">
+        <div class="left-column">
+           <img src="{{ url_for('static', filename='images/bird_yellow.png') }}">
+        </div>
+        <div class="right-column">
+          <h1>App Function 1</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nulla rhoncus imperdiet purus in sollicitudin.
+                  Nunc tristique nunc non nisl luctus auctor.
+                  Pellentesque in feugiat nulla, non vehicula arcu.
+                  Morbi rutrum feugiat lorem, fermentum ultricies quam dapibus vitae.
+                  Vestibulum consectetur nibh dolor, id consequat diam viverra quis.
+                  Integer eu augue accumsan, laoreet tellus et, posuere nisl.</p>
+            <p>Vivamus iaculis in elit in pretium. Proin rhoncus at nisi eu convallis.</p>
+          </div>
+      </section>
+    </div>
+
+    <div class="gradient" id="red-divider">
+      <section class="mid-container">
+        <div class="left-column">
+           <h1>App Function 2</h1>
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nulla rhoncus imperdiet purus in sollicitudin.
+                  Nunc tristique nunc non nisl luctus auctor.
+                  Pellentesque in feugiat nulla, non vehicula arcu.
+                  Morbi rutrum feugiat lorem, fermentum ultricies quam dapibus vitae.
+                  Vestibulum consectetur nibh dolor, id consequat diam viverra quis.</p>
+             <p>Integer eu augue accumsan, laoreet tellus et, posuere nisl.
+                  Vivamus iaculis in elit in pretium. Proin rhoncus at nisi eu convallis.</p>
+          </div>
+          <div class="right-column">
+            <img src="{{ url_for('static', filename='images/bird_red.png') }}">
+          </div>
+      </section>
+    </div>
+
+    <div class="gradient" id="green-divider">
+      <section class="mid-container">
+        <div class="left-column">
+           <img src="{{ url_for('static', filename='images/bird_green.png') }}">
+        </div>
+        <div class="right-column">
+          <h1>App Function 3</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nulla rhoncus imperdiet purus in sollicitudin.
+                  Nunc tristique nunc non nisl luctus auctor.
+                  Pellentesque in feugiat nulla, non vehicula arcu.</p>
+          </div>
+      </section>
+    </div>
+
+  </div>
+{% endblock %}

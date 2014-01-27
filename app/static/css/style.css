@@ -1,0 +1,207 @@
+/*
+ * HTML tags
+ */
+header {
+  padding: 0;
+  margin: 0;
+  height: 113px;
+  max-width: 1920px;
+  min-width: 1105px;
+  opacity: .9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+  color: #444;
+}
+
+div {
+  display: block;
+}
+
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #999;
+}
+
+p {
+  font-size: 1em;
+  padding-bottom: 1em;
+  font-family: Arial;
+  color: #999;
+}
+
+
+
+/*
+ * General objects:
+ *   - Container
+ */
+#wrapper {
+  background-color: #fff;
+}
+
+
+
+/*
+ * Header objects:
+ *   - Logo
+ *   - Menu Nav
+ */
+.container {
+  height: 100%;
+  max-width: 1900px;
+  min-width: 1105px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.row {
+  display: block;
+  height: 100%;
+  width: 100%;
+  max-width: 1100px;
+  min-width: 755px;
+  margin: 0 auto;
+  text-align: center;
+}
+header .container .row #logo {
+  margin: 0;
+  padding-top: 15px;
+  text-align: left;
+  float: left;
+  font-size: 2.7em;
+  text-transform: uppercase;
+}
+
+/* Logo links */
+header .container .row #logo .logo-link {
+  text-decoration: none;
+}
+header .container .row #logo .logo-link:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navigation menu */
+header .container .row .nav {
+  text-align: right;
+  padding-bottom: 28px;
+  padding-top: 30px;
+  padding-right: 0px;
+}
+
+/* Will be used in header and footer */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  display: inline;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  color: #999;
+  text-decoration: none;
+}
+
+.main-container {
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1920px;
+  min-width: 1105px;
+}
+
+.main-container .container {
+  height: 900px;
+}
+
+.main-container img {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#landing-container {
+  padding: 0;
+  margin: 0;
+  height: 491px;
+}
+
+#yellow-divider {
+  background:url('/static/images/divider_yellow.png') repeat-x;
+}
+
+#yellow-divider h1 {
+  color: #ffca09;
+}
+
+#green-divider {
+  background:url('/static/images/divider_green.png') repeat-x;
+}
+#green-divider h1 {
+  color: #128541;
+}
+
+#red-divider {
+ background:url('/static/images/divider_red.png') repeat-x;
+}
+#red-divider h1 {
+ color: #ed2724;
+}
+
+#landing-container .gradient .mid-container {
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1100px;
+  min-width: 755px;
+  text-align: center;
+  overflow: hidden;
+}
+#landing-container .gradient .mid-container .left-column {
+  padding-top: 80px;
+  padding-bottom: 40px;
+  padding-left: 60px;
+  width: 492px;
+  float: left;
+  text-align: left;
+}
+#landing-container .gradient .mid-container .right-column {
+  padding-top: 80px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  text-align: left;
+  width: 492px;
+  overflow: hidden;
+}
+
+#landing-container img {
+  padding-left: 20px;
+}
+
+#landing-container .gradient .mid-container h1 {
+  font-size: 3em;
+  font-weight: 300;
+  line-height: 1.1em;
+}
