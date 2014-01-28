@@ -1,24 +1,28 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+
   <div class="left-column">
     <img src="{{ url_for('static', filename='images/bird_yellow.png') }}">
   </div>
   <div class="right-column">
     <form class="signup-form" action="{{ url_for('new_signup') }}" method="POST">
     <dl>
-      <dd><input name="firstName" type="text" placeholder="First name"></dd>
-      <dd><input name="lastName" type="text" placeholder="Last name"></dd>
-      <dd><input name="email" type="email" placeholder="Email"></dd>
-      <dd><input name="country" type="text" placeholder="Country"></dd>
-      <dd><input name="city" type="text" placeholder="City"></dd>
-      <dd><select name="reference" autofocus="friend">
+      <dd><input required="" name="firstName" type="text" placeholder="First name"></dd>
+      <dd><input required="" name="lastName" type="text" placeholder="Last name"></dd>
+      <dd><input required="" name="email" type="email" placeholder="Email"></dd>
+      <dd><input required="" name="country" type="text" placeholder="Country"></dd>
+      <dd><input required="" name="city" type="text" placeholder="City"></dd>
+      <dd><select name="reference">
         <option value="friend">From a friend</option>
         <option value="g_plus">Google+</option>
         <option value="search_engine">Searched for it</option>
         <option value="facebook">Facebook</option>
         <option value="twitter">Twitter</option>
-        <option value="other">Other</option>
+        <!-- option value="test">Other</option -->
       </select></dd>
       <dd><button class="button" type="submit">Sign up</button></dd>
     </dl>

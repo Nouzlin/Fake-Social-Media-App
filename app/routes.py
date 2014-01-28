@@ -1,11 +1,12 @@
 __author__ = 'Linus'
-from flask import Flask, render_template, request
-import database
+from flask import Flask, flash, render_template, request, g
+import database, sqlite3
 
 # configuration
 DATABASE = 'app_db.db'
 
 app = Flask(__name__)
+app.secret_key ="PEPPARKAKS_bagare_IN_da_HOUSE"
 app.config.from_object(__name__)
 
 @app.route('/')
@@ -24,8 +25,18 @@ def signup():
 def new_signup():
     info = [request.form['firstName'], request.form['lastName'], request.form['email'],
             request.form['country'], request.form['city'], request.form['reference']]
-    database.add_message(app, info)
-    return render_template('register_completed.html')
+
+    try:
+        database.add_message(app, info)
+        signups_count = database.get_signup_count(app)
+        return render_template('register_completed.html', signups=signups_count)
+    except sqlite3.IntegrityError:
+        flash('Email already signed up')
+        return signup()
+
+@app.teardown_appcontext
+def close_connection(exception):
+    database.close_connection(exception)
 
 if __name__ == "__main__":
     #database.init(app)
