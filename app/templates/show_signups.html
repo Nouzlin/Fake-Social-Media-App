@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+  <h2>People signed up:</h2>
+  {% for signup in signups %}
+    <h3>{{ signup }}</h3>
+  {% endfor %}
+{% endblock %}

@@ -1,12 +1,16 @@
 __author__ = 'Linus'
-from flask import Flask, flash, render_template, request, g
-import database, sqlite3
+from flask import Flask, flash, render_template, session, redirect, url_for, request, g
+import database, sqlite3, os
 
 # configuration
 DATABASE = 'app_db.db'
+DEBUG = True
+SECRET_KEY = os.urandom(128)
+USERNAME = 'admin'
+PASSWORD = 'MySuper1337Password'
+HOST = 'localhost'
 
 app = Flask(__name__)
-app.secret_key ="PEPPARKAKS_bagare_IN_da_HOUSE"
 app.config.from_object(__name__)
 
 @app.route('/')
@@ -18,12 +22,14 @@ def about():
     return render_template('about.html')
 
 @app.route('/signup')
-def signup():
-    return render_template('signup.html')
+def signup(data=list()):
+    if not data:
+        return render_template('signup.html')
+    return render_template('signup_try_again.html')
 
 @app.route("/new_signup", methods=['POST'])
 def new_signup():
-    info = [request.form['firstName'], request.form['lastName'], request.form['email'],
+    info = [request.form['first_name'], request.form['last_name'], request.form['email'],
             request.form['country'], request.form['city'], request.form['reference']]
 
     try:
@@ -32,7 +38,29 @@ def new_signup():
         return render_template('register_completed.html', signups=signups_count)
     except sqlite3.IntegrityError:
         flash('Email already signed up')
-        return signup()
+        return signup(info)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if (request.form['username'] != app.config['USERNAME'] or
+            request.form['password'] != app.config['PASSWORD']):
+            flash('Invalid username or password')
+        else:
+            session['logged_in'] = True
+            flash('You were logged in')
+            return redirect(url_for('show_signups'))
+    return render_template('login.html')
+
+@app.route('/show_signups')
+def show_signups():
+    try:
+        if not session['logged_in']:
+            Flask.abort(401)
+        return render_template('show_signups.html', signups=database.get_signups(app))
+    except KeyError:
+        flash('You need to be logged in to view that page')
+        return redirect(url_for('home'))
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -40,4 +68,4 @@ def close_connection(exception):
 
 if __name__ == "__main__":
     #database.init(app)
-    app.run(host="localhost", debug=True)
+    app.run()

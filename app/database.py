@@ -34,3 +34,8 @@ def get_signup_count(app):
     db = get_db(app)
     cursor = db.execute('select count(*) from signups')
     return cursor.fetchone()[0]
+
+def get_signups(app):
+    db = get_db(app)
+    cursor = db.execute('select * from signups')
+    return cursor.fetchall()
