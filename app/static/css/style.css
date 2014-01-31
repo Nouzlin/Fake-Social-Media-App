@@ -153,21 +153,21 @@ header .container .row .nav {
   background:url('/static/images/divider_yellow.png') repeat-x;
 }
 
-#yellow-divider h1 {
+.yellow-color {
   color: #ffca09;
 }
 
 #green-divider {
   background:url('/static/images/divider_green.png') repeat-x;
 }
-#green-divider h1 {
+.green-color {
   color: #128541;
 }
 
 #red-divider {
  background:url('/static/images/divider_red.png') repeat-x;
 }
-#red-divider h1 {
+.red-color {
  color: #ed2724;
 }
 
@@ -240,9 +240,15 @@ header .container .row .nav {
   padding: 5px 0 5px 7px;
 }
 
+.signup-form dt {
+  text-align: center;
+  padding-left: 38px;
+}
+
 .signup-form select {
   margin-bottom: 7px;
-  width: 150px;
+  padding: 5px 0 5px 3px;
+  width: 160px;
 }
 
 input:focus {
@@ -251,6 +257,14 @@ input:focus {
 
 *:focus {
   outline: none;
+}
+
+.flashes {
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  color: #333;
+  background: #ffca09;
+  list-style: none;
 }
 
 

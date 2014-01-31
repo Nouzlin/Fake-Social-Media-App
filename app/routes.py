@@ -40,4 +40,4 @@ def close_connection(exception):
 
 if __name__ == "__main__":
     #database.init(app)
-    app.run(debug=True)
+    app.run(host="localhost", debug=True)

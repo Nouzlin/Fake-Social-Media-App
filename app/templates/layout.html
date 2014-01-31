@@ -2,15 +2,6 @@
 <html>
   <head>
 	<title>My App</title>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class=flashes>
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-              </ul>
-        {% endif %}
-      {% endwith %}
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
@@ -33,8 +24,19 @@
 	  </header>
 
       <div class="main-container">
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
         <div class="container">
           <div class="row">
+
+
             {% block main_content %}
             {% endblock %}
           </div>
