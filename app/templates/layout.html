@@ -5,6 +5,33 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>
+      var cookie_name="oauth_token"
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '575435362539451',
+          status     : true,
+          xfbml      : true
+        });
+        FB.Event.subscribe('auth.authResponseChange', function(response) {
+          if (response.status === 'connected') {
+              document.cookie=cookie_name+"="+response.authResponse.accessToken ;
+          } else {
+              document.cookie = cookie_name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+              FB.login();
+          }
+        });
+      };
+      (function(d, s , id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 	<div id="wrapper">
       <header>
         <div class="container">
@@ -17,6 +44,9 @@
               <ul class="menu">
 			    <li><a href="{{ url_for('home') }}">Home</a></li>
 			    <li><a href="{{ url_for('about') }}">About</a></li>
+                {% if session.logged_in %}
+                  <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
+                {% endif %}
 			  </ul>
 		    </nav>
 		  </div>

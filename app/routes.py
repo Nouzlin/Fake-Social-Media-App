@@ -1,6 +1,6 @@
 __author__ = 'Linus'
 from flask import Flask, flash, render_template, session, redirect, url_for, request, g
-import database, sqlite3, os
+import database, sqlite3, os, social
 
 # configuration
 DATABASE = 'app_db.db'
@@ -51,6 +51,12 @@ def login():
             flash('You were logged in')
             return redirect(url_for('show_signups'))
     return render_template('login.html')
+
+@app.route('/register_completed')
+def register_completed():
+    #oauth_token = request.cookies.get("oauth_token")
+    #social.upload_wall(oath_token=oauth_token)
+    return render_template('register_completed.html')
 
 @app.route('/show_signups')
 def show_signups():
