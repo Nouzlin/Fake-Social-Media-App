@@ -267,4 +267,11 @@ input:focus {
   list-style: none;
 }
 
+.fb-login-button {
+  margin-top: 60px;
+  text-align: center;
+  align-content: center;
+  display: block;
+}
+
 

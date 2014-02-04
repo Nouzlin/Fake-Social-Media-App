@@ -3,6 +3,6 @@
 {% block main_content %}
   <h2>People signed up:</h2>
   {% for signup in signups %}
-    <h3>{{ signup }}</h3>
+    <h3>{{ signup.name + ", " + signup.email + ", " + signup.country + ", " + signup.city + ", from " + signup.reference }}</h3>
   {% endfor %}
 {% endblock %}

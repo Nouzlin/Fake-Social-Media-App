@@ -56,7 +56,9 @@ def login():
 def register_completed():
     #oauth_token = request.cookies.get("oauth_token")
     #social.upload_wall(oath_token=oauth_token)
-    return render_template('register_completed.html')
+    #social.tweet()
+    tweets = social.get_tweets()
+    return render_template('register_completed.html', tweets=tweets)
 
 @app.route('/show_signups')
 def show_signups():

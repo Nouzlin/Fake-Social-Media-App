@@ -37,5 +37,7 @@ def get_signup_count(app):
 
 def get_signups(app):
     db = get_db(app)
-    cursor = db.execute('select * from signups')
-    return cursor.fetchall()
+    cursor = db.execute('select Firstname, LastName, Email, country, City, Reference from signups order by ID desc')
+    signups = [dict(name=row[0] + " " + row[1], email=row[2], country=row[3], city=row[4], reference=row[5])
+               for row in cursor.fetchall()]
+    return signups
