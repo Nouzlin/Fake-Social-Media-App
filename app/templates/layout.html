@@ -1,85 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<title>My App</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script>
-      var cookie_name="oauth_token"
-      window.fbAsyncInit = function() {
+<head>
+    <title>My App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+    var cookie_name="oauth_token"
+    window.fbAsyncInit = function() {
         FB.init({
-          appId      : '575435362539451',
-          status     : true,
-          xfbml      : true
+            appId      : '575435362539451',
+            status     : true,
+            xfbml      : true
         });
         FB.Event.subscribe('auth.authResponseChange', function(response) {
-          if (response.status === 'connected') {
-              document.cookie=cookie_name+"="+response.authResponse.accessToken ;
-          } else {
-              document.cookie = cookie_name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-              FB.login();
-          }
+            if (response.status === 'connected') {
+                document.cookie=cookie_name+"="+response.authResponse.accessToken ;
+            } else {
+                document.cookie = cookie_name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                FB.login();
+            }
         });
-      };
-      (function(d, s , id){
+    };
+    (function(d, s , id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
-	<div id="wrapper">
-      <header>
+<div id="wrapper">
+    <header>
         <div class="container">
-          <div class="row">
-            <h1 id="logo">
-			  <a class="logo-link" href="{{ url_for('home') }}">Logo(tm)</a>
-		    </h1>
+            <div class="row">
+                <h1 id="logo">
+                    <a class="logo-link" href="{{ url_for('home') }}">Logo(tm)</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="menu">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        {% if session.logged_in %}
+                        <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-		    <nav class="nav">
-              <ul class="menu">
-			    <li><a href="{{ url_for('home') }}">Home</a></li>
-			    <li><a href="{{ url_for('about') }}">About</a></li>
-                {% if session.logged_in %}
-                  <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
-                {% endif %}
-			  </ul>
-		    </nav>
-		  </div>
-	    </div>
-	  </header>
-
-      <div class="main-container">
-          {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                  <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-              {% endif %}
-            {% endwith %}
+    <div class="main-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <div class="container">
-          <div class="row">
-
-
-            {% block main_content %}
-            {% endblock %}
-          </div>
+            <div class="row">
+                {% block main_content %}
+                {% endblock %}
+            </div>
         </div>
         {% block landing_content %}
         {% endblock %}
-      </div>
-	</div>
+    </div>
+</div>
+</body>
 
-    <footer>
-      <div class="info">
+<footer>
+    <div class="info">
+        <nav class="nav">
+            <ul class="menu">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                {% if session.logged_in %}
+                <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</footer>
 
-      </div>
-    </footer>
-  </body>
 </html>

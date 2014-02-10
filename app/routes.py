@@ -19,13 +19,12 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    tweets = social.get_tweets()
+    return render_template('about.html', tweets=tweets)
 
 @app.route('/signup')
 def signup(data=list()):
-    if not data:
-        return render_template('signup.html')
-    return render_template('signup_try_again.html')
+    return render_template('signup.html', data=data)
 
 @app.route("/new_signup", methods=['POST'])
 def new_signup():
@@ -35,6 +34,7 @@ def new_signup():
     try:
         database.add_message(app, info)
         signups_count = database.get_signup_count(app)
+        social.tweet(info)
         return render_template('register_completed.html', signups=signups_count)
     except sqlite3.IntegrityError:
         flash('Email already signed up')
@@ -52,13 +52,11 @@ def login():
             return redirect(url_for('show_signups'))
     return render_template('login.html')
 
-@app.route('/register_completed')
-def register_completed():
-    #oauth_token = request.cookies.get("oauth_token")
-    #social.upload_wall(oath_token=oauth_token)
-    #social.tweet()
-    tweets = social.get_tweets()
-    return render_template('register_completed.html', tweets=tweets)
+@app.route('/share_story')
+def share_story():
+    oauth_token = request.cookies.get("oauth_token")
+    social.share_story(oath_token=oauth_token)
+    return render_template('story_completed.html')
 
 @app.route('/show_signups')
 def show_signups():

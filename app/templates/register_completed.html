@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
-  <h2>Thank you for your interest!</h2>
-  <h3>You are number {{ signups }} to sign up</h3>
+  <div>
+    <h2>Thank you for your interest!</h2>
+    <h3>You are number {{ signups }} to sign up</h3>
 
-  <h2>Tweets with #TDDD80:</h2>
-  {% for tweet in tweets %}
-    <h3>{{ tweet.name + " from " + tweet.location + " tweeted '" + tweet.text + "'" }}</h3>
-  {% endfor %}
-
+    <form action="{{ url_for('share_story') }}">
+      <button class="button" type="submit">Share story on Facebook!</button></dd>
+    </form>
+  </div>
   <div
     class="fb-login-button"
     data-show-faces="true"

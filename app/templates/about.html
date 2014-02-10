@@ -6,4 +6,13 @@
   <p>I am Linus Kortesalmi, student at Linköpings University.</p>
   <p>Experienced in Python, C# and soon to be in Java, HTML, CSS, MySQL.</p>
   <p>Welcome to my world and my App!</p>
+
+  <h4>Tweets with #TDDD80:</h4>
+  {% if tweets %}
+    {% for tweet in tweets %}
+      <p>{{ tweet.name + " from " + tweet.location + " tweeted '" + tweet.text + "'" }}</p>
+    {% endfor %}
+  {% else %}
+    <p>There are not tweets.</p>
+  {% endif %}
 {% endblock %}

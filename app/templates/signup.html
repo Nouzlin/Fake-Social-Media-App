@@ -11,11 +11,11 @@
   <div class="right-column">
     <form class="signup-form" action="{{ url_for('new_signup') }}" method="POST">
     <dl>
-      <dd><input required="" name="first_name" type="text" placeholder="First name"></dd>
-      <dd><input required="" name="last_name" type="text" placeholder="Last name"></dd>
+      <dd><input required="" name="first_name" value="{{data[0]}}"  type="text" placeholder="First name"></dd>
+      <dd><input required="" name="last_name" value="{{data[1]}}" type="text" placeholder="Last name"></dd>
       <dd><input required="" name="email" type="email" placeholder="Email"></dd>
-      <dd><input required="" name="country" type="text" placeholder="Country"></dd>
-      <dd><input required="" name="city" type="text" placeholder="City"></dd>
+      <dd><input required="" name="country" value="{{data[3]}}" type="text" placeholder="Country"></dd>
+      <dd><input required="" name="city" value="{{data[4]}}" type="text" placeholder="City"></dd>
       <dt>How did you get here?</dt>
       <dd><select name="reference">
         <option value="friend">Friend told me</option>
