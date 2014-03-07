@@ -1,10 +1,15 @@
+<!-- The layout for the web-page, acts as a standard for all sub-pages. -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>My App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
+
+<!-- Create a facebook oauth token to remember if we are logged in to FB -->
 <div id="fb-root"></div>
 <script>
     var cookie_name="oauth_token"
@@ -33,6 +38,8 @@
 </script>
 
 <div id="wrapper">
+
+    <!-- The navigation menu -->
     <header>
         <div class="container">
             <div class="row">
@@ -52,6 +59,7 @@
         </div>
     </header>
 
+    <!-- Container for 'flash' messages -->
     <div class="main-container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -73,19 +81,5 @@
     </div>
 </div>
 </body>
-
-<footer>
-    <div class="info">
-        <nav class="nav">
-            <ul class="menu">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                {% if session.logged_in %}
-                <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </div>
-</footer>
 
 </html>

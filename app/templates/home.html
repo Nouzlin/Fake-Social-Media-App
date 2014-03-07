@@ -1,15 +1,20 @@
+<!-- The homepage of the website -->
 {% extends "layout.html" %}
 
+<!-- The main content that fills upp the screen,
+     introduces the website with a nice image -->
 {% block main_content %}
   <img src="{{ url_for('static', filename='images/earth.png') }}">
   <h2>Welcome to My App</h2>
   <h3>This is the home page for My App and it is currently under heavy construction.</h3>
   <h3>Interested? Sign up below to get the latest news and updates! </h3>
 
+  <!-- Sign up button that links to the sign up page -->
   <form action="{{ url_for('signup') }}">
     <button class="button" type="submit">Sign up</button>
   </form>
 
+  <!-- The facebook "plugin" -->
   <div
     class="fb-login-button"
     data-show-faces="true"
@@ -27,8 +32,11 @@
   </div>
 {% endblock %}
 
+<!-- Landing content for those that want to know more about the project -->
 {% block landing_content %}
   <div id="landing-container">
+
+    <!-- The 'Yellow' Content -->
     <div class="gradient" id="yellow-divider">
       <section class="mid-container">
         <div class="left-column">
@@ -48,6 +56,7 @@
       </section>
     </div>
 
+    <!-- The 'Red' Content -->
     <div class="gradient" id="red-divider">
       <section class="mid-container">
         <div class="left-column">
@@ -67,6 +76,7 @@
       </section>
     </div>
 
+    <!-- The 'Green' Content -->
     <div class="gradient" id="green-divider">
       <section class="mid-container">
         <div class="left-column">

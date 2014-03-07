@@ -1,3 +1,8 @@
+/* Script for setting up the DB.
+    - Clears the sign up table if it exits
+    - Creates a new one
+ */
+
 drop table if exists signups;
 
 create table signups (

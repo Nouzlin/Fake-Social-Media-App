@@ -1,66 +1,44 @@
-/*
- * HTML tags
- */
-header {
-  padding: 0;
-  margin: 0;
-  height: 113px;
-  max-width: 1900px;
-  min-width: 1100px;
-  opacity: .9;
-}
-
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
-}
-
-footer {
-  margin: 0;
-  padding: 0;
-  color: #444;
+    color: #444;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 div {
-  display: block;
+    display: block;
 }
 
 h2 {
-  font-size: 3em;
-  margin-top: 40px;
-  text-align: center;
-  letter-spacing: -2px;
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-top: 40px;
+    text-align: center;
 }
 
 h3 {
-  font-size: 1.7em;
-  font-weight: 100;
-  margin-top: 30px;
-  text-align: center;
-  letter-spacing: -1px;
-  color: #999;
+    color: #999;
+    font-size: 1.7em;
+    font-weight: 100;
+    letter-spacing: -1px;
+    margin-top: 30px;
+    text-align: center;
 }
 
 p {
-  font-size: 1em;
-  padding-bottom: 1em;
-  font-family: Arial;
-  color: #999;
+    color: #999;
+    font-family: 'Arial', Arial, sans-serif;
+    font-size: 1em;
+    padding-bottom: 1em;
 }
-
-
 
 /*
  * General objects:
  *   - Container
  */
 #wrapper {
-  background-color: #fff;
+    background-color: #fff;
 }
-
-
 
 /*
  * Header objects:
@@ -68,209 +46,235 @@ p {
  *   - Menu Nav
  */
 .container {
-  height: 100%;
-  max-width: 1885px;
-  min-width: 1100px;
-  padding-left: 10px;
-  padding-right: 10px;
+    height: 100%;
+    max-width: 1885px;
+    min-width: 1100px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
 .row {
-  display: block;
-  height: 100%;
-  width: 100%;
-  max-width: 1100px;
-  min-width: 755px;
-  margin: 0 auto;
-  text-align: center;
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-width: 1100px;
+    min-width: 755px;
+    margin: 0 auto;
+    text-align: center;
 }
+
+/* ----------------------------- HEADER ---------------------------------- */
+header {
+    height: 113px;
+    padding: 0;
+    margin: 0;
+    max-width: 1900px;
+    min-width: 1100px;
+    opacity: 0.9;
+}
+
 header .container .row #logo {
-  margin: 0;
-  padding-top: 15px;
-  text-align: left;
-  float: left;
-  font-size: 2.7em;
-  text-transform: uppercase;
+    margin: 0;
+    padding-top: 15px;
+    text-align: left;
+    float: left;
+    font-size: 2.7em;
+    text-transform: uppercase;
 }
 
 /* Logo links */
 header .container .row #logo .logo-link {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 header .container .row #logo .logo-link:visited {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Navigation menu */
 header .container .row .nav {
-  text-align: right;
-  padding-bottom: 28px;
-  padding-top: 30px;
-  padding-right: 0px;
+    text-align: right;
+    padding-bottom: 28px;
+    padding-top: 30px;
+    padding-right: 0px;
 }
 
 /* Will be used in header and footer */
 .menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 .menu li {
-  display: inline;
+    display: inline;
 }
 .menu li + li {
-  margin-left: 35px;
+    margin-left: 35px;
 }
 .menu li a {
-  color: #999;
-  text-decoration: none;
+    color: #999;
+    text-decoration: none;
 }
 
+/* ------------------------- MAIN CONTENT (Body) -----------------------*/
+/* Center aligned container for main content */
 .main-container {
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1905px;
-  min-width: 1100px;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1905px;
+    min-width: 1100px;
 }
 
 .main-container .container {
-  height: 900px;
+    height: 900px;
 }
 
 .main-container img {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #landing-container {
-  padding: 0;
-  margin: 0;
-}
-
-#yellow-divider {
-  background:url('/static/images/divider_yellow.png') repeat-x;
-}
-
-.yellow-color {
-  color: #ffca09;
-}
-
-#green-divider {
-  background:url('/static/images/divider_green.png') repeat-x;
-}
-.green-color {
-  color: #128541;
-}
-
-#red-divider {
- background:url('/static/images/divider_red.png') repeat-x;
-}
-.red-color {
- color: #ed2724;
+    padding: 0;
+    margin: 0;
 }
 
 #landing-container .gradient .mid-container {
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1100px;
-  min-width: 755px;
-  text-align: center;
-  overflow: hidden;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1100px;
+    min-width: 755px;
+    text-align: center;
+    overflow: hidden;
 }
+
+/* Dividers between each smaller container in the mid-container */
+#yellow-divider {
+    background:url('/static/images/divider_yellow.png') repeat-x;
+}
+
+.yellow-color {
+    color: #ffca09;
+}
+
+#green-divider {
+    background:url('/static/images/divider_green.png') repeat-x;
+}
+
+.green-color {
+    color: #128541;
+}
+
+#red-divider {
+    background:url('/static/images/divider_red.png') repeat-x;
+}
+
+.red-color {
+    color: #ed2724;
+}
+
+/* Columns of the mid-container */
 .left-column {
-  padding-top: 80px;
-  padding-bottom: 40px;
-  padding-left: 60px;
-  width: 492px;
-  float: left;
-  text-align: left;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    padding-left: 60px;
+    width: 492px;
+    float: left;
+    text-align: left;
 }
 
 .right-column {
-  padding-top: 80px;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  text-align: left;
-  width: 492px;
-  overflow: hidden;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    text-align: left;
+    width: 492px;
+    overflow: hidden;
 }
 
 #landing-container img {
-  padding-left: 20px;
+    padding-left: 20px;
 }
 
 #landing-container .gradient .mid-container h1 {
-  font-size: 3em;
-  font-weight: 300;
-  line-height: 1.1em;
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1.1em;
 }
 
-.button { /*From: http://zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba */
-  width: 160px;
-  height: 40px;
-  padding: 0 0 0 0;
-  text-align: center;
-  background: #666; /*url(/images/alert-overlay.png) repeat-x;*/
-  display: inline-block;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
+/* ------------------------------------ BUTTON ---------------------------- /*
+/* Same layout for all the buttons on the web-page */
+.button {
+    width: 160px;
+    height: 40px;
+    padding: 0 0 0 0;
+    text-align: center;
+    background: #666;
+    display: inline-block;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .button:hover {
-  background: #444;
+    background: #444;
 }
 
+/* ---------------------------------------- SIGN UP FORM ------------------- /*
+/* Sign up form and customizations to it */
 .signup-form {
-  display: inline-block;
-  padding-top: 40px;
+    display: inline-block;
+    padding-top: 40px;
 }
 
 .signup-form input {
-  margin-bottom: 7px;
-  width: 150px;
-  height: 20px;
-  border: 1px solid;
-  border-color: #777;
-  border-radius: 3px;
-  color: #000;
-  text-align: left;
-  padding: 5px 0 5px 7px;
+    margin-bottom: 7px;
+    width: 150px;
+    height: 20px;
+    border: 1px solid;
+    border-color: #777;
+    border-radius: 3px;
+    color: #000;
+    text-align: left;
+    padding: 5px 0 5px 7px;
 }
 
 .signup-form dt {
-  text-align: center;
-  padding-left: 38px;
+    text-align: center;
+    padding-left: 38px;
 }
 
 .signup-form select {
-  margin-bottom: 7px;
-  padding: 5px 0 5px 3px;
-  width: 160px;
+    margin-bottom: 7px;
+    padding: 5px 0 5px 3px;
+    width: 160px;
 }
 
+/* High-lightning effect on form-box focus */
 input:focus {
-  color: #888;
+    color: #888;
 }
 
 *:focus {
-  outline: none;
+    outline: none;
 }
 
+/* Error messages or notices styling */
 .flashes {
-  padding: 10px 0px 10px 0px;
-  text-align: center;
-  color: #333;
-  background: #ffca09;
-  list-style: none;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    color: #333;
+    background: #ffca09;
+    list-style: none;
 }
 
 .fb-login-button {
-  margin-top: 60px;
-  text-align: center;
-  align-content: center;
-  display: block;
+    margin-top: 60px;
+    text-align: center;
+    align-content: center;
+    display: block;
 }
 
 

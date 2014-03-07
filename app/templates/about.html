@@ -1,3 +1,4 @@
+  <!-- About page that extends the layout in 'layout.html' -->
 {% extends "layout.html" %}
 
 {% block main_content %}
@@ -7,6 +8,7 @@
   <p>Experienced in Python, C# and soon to be in Java, HTML, CSS, MySQL.</p>
   <p>Welcome to my world and my App!</p>
 
+  <!-- List all tweets with #TDDD80 -->
   <h4>Tweets with #TDDD80:</h4>
   {% if tweets %}
     {% for tweet in tweets %}
