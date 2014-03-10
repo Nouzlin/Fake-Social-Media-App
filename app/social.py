@@ -27,6 +27,7 @@ def get_tweets(hashtag):
 # :earn is the Action
 # awesomeness is the Object
 # (which has some properties you can customize on the FB page)
+#TODO: Handle AssertionError "No valid oauth token"
 def share_story(oath_token):
     graph = facebook.GraphAPI(oath_token)
     return graph.put_object("me", "linko_lab_three:earn", awesomeness={

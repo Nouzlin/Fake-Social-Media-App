@@ -1,0 +1,36 @@
+<!-- Page where you can create a new invitation group
+     Only visible to logged in admins. -->
+{% extends "layout.html" %}
+
+{% block main_content %}
+<h2>Create new Invitation Group</h2>
+<div class="left-column">
+    <img src="{{ url_for('static', filename='images/bird_yellow.png') }}">
+</div>
+<div class="right-column">
+    <form class="signup-form" action="{{ url_for('new_group') }}" method="POST">
+        <dl>
+            <dd>Group name: <input type="text" name="group_name"></dd>
+
+            <dt>Priority</dt>
+            <dd><select name="priority">
+                <option value="none">No priority</option>
+                <option value="low">Low</option>
+                <option value="average">Average</option>
+                <option value="high">High</option>
+                <option value="important">Important</option>
+                <option value="vip">VIP</option>
+            </select></dd>
+
+            <dd><h3>Select Members</h3></dd>
+            <dd>
+                {% for person in signups %}
+                <input type="checkbox" name="person_id" value="{{person.id}}"> {{person.name}} <br>
+                {% endfor %}
+            </dd>
+
+            <dd><button class="button" type="submit">Create Group</button></dd>
+        </dl>
+    </form>
+</div>
+{% endblock %}

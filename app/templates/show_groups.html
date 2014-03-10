@@ -1,0 +1,21 @@
+<!-- Shows information about everyone who has signed up.
+     Only visible to logged in admins. -->
+{% extends "layout.html" %}
+
+{% block main_content %}
+<div class="container">
+    <div class="right-column">
+        <h2>Groups</h2>
+        {% for group in groups %}
+        <ul>
+            <li>{{ group.name }}</li>
+            <ul>
+                {% for members in member_lists[group.name] %}
+                <li> {{ members.name }} </li>
+                {% endfor %}
+            </ul>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

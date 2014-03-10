@@ -52,6 +52,8 @@
                         <li><a href="{{ url_for('about') }}">About</a></li>
                         {% if session.logged_in %}
                         <li><a href="{{ url_for('show_signups') }}">Stats</a></li>
+                        <li><a href="{{ url_for('create_group') }}">Create Group</a></li>
+                        <li><a href="{{ url_for('show_groups') }}">View Groups</a></li>
                         {% endif %}
                     </ul>
                 </nav>

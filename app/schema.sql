@@ -4,6 +4,7 @@
  */
 
 drop table if exists signups;
+drop table if exists groups;
 
 create table signups (
     ID integer primary key autoincrement,
@@ -13,6 +14,12 @@ create table signups (
     Country text not null,
     City text not null,
     Reference text not null
+);
+
+create table groups (
+    ID integer primary key autoincrement,
+    Name text not null unique,
+    Priority text not null
 );
 
 
