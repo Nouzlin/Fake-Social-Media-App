@@ -38,10 +38,10 @@ def new_signup():
 
     try:
         # Add the message, throws sqlite3.IntegrityError
-        database.add_message(app, info)
+        database.add_registered_user(info)
 
         # Get the number of people signed up
-        signups_count = database.get_signup_count(app)
+        signups_count = database.get_signup_count()
 
         # Tweet that we have a new recruit!
         #social.tweet(info)
@@ -86,7 +86,7 @@ def show_signups():
         # Check if we are logged in this session.
         if not session['logged_in']:
             Flask.abort(401)
-        return render_template('show_signups.html', signups=database.get_signups(app))
+        return render_template('show_signups.html', signups=database.get_signups())
     except KeyError:
         # Visualize for the user that something went wrong.
         flash('You need to be logged in to view that page')
@@ -99,7 +99,7 @@ def create_group():
         # Check if we are logged in this session.
         if not session['logged_in']:
             Flask.abort(401)
-        return render_template('create_group.html', signups=database.get_persons_and_ids(app))
+        return render_template('create_group.html', signups=database.get_persons_and_ids())
     except KeyError:
         # Visualize for the user that something went wrong.
         flash('You need to be logged in to view that page')
@@ -112,11 +112,11 @@ def show_groups():
         if not session['logged_in']:
             abort(401)
 
-        group_list = database.get_groups(app)
+        group_list = database.get_groups()
         group_member_lists = dict()  # Create a dictionary with (key, value) being (group_name, members)
         for group in group_list:
             # For each group: add a list of its members
-            group_member_lists[group['name']] = database.get_group_members(app, group['name'])
+            group_member_lists[group['name']] = database.get_group_members(group['name'])
         return render_template('show_groups.html', groups=group_list, member_lists=group_member_lists)
 
     except KeyError:
@@ -133,8 +133,8 @@ def new_group():
 
         group_name = request.form['group_name']
         priority = request.form['priority']
-        database.create_new_group(app, group_name, priority)
-        database.add_group_members(app, group_name, request.form.getlist('person_id'))
+        database.create_new_group(group_name, priority)
+        database.add_group_members(group_name, request.form.getlist('person_id'))
 
         flash('Group created')
         return redirect(url_for('create_group'))
@@ -157,33 +157,13 @@ def new_group():
 # Lists all created groups
 @app.route('/api/v1.0/groups', methods=['GET'])
 def handle_groups():
-    try:
-        # Check if we are logged in this session.
-        if not session['logged_in']:
-            abort(401)
-
-        groups = jsonify({'groups': database.get_groups(app)})
-        return groups
-
-    except KeyError:
-        # Visualize for the user that something went wrong.
-        flash('You need to be logged in to view that page')
-        return redirect(url_for('home'))
+    groups = jsonify({'groups': database.get_groups()})
+    return groups, 200
 
 @app.route('/api/v1.0/groups/<string:group_name>', methods=['GET'])
 def get_group_members(group_name):
-    try:
-        # Check if we are logged in this session.
-        if not session['logged_in']:
-            abort(401)
-
-        members = database.get_group_members(app, group_name)
-        return jsonify({'members': members})
-
-    except KeyError:
-        # Visualize for the user that something went wrong.
-        flash('You need to be logged in to view that page')
-        return redirect(url_for('home'))
+    members = database.get_group_members(group_name)
+    return jsonify({'members': members})
 
 ###############################################################################
 # Clean up and Error handling #################################################
@@ -199,8 +179,8 @@ def resource_not_found(error):
 
 if __name__ == "__main__":
     # Reset DB?
-    if not os.path.isfile("app_db.db"):
-        database.init(app)
+    if not os.path.isfile(DATABASE):
+        database.init()
 
     app.run(debug=True)
 
