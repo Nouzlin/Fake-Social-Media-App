@@ -1,0 +1,8 @@
+Hello,
+
+Click on the following link to get the news:
+{{url_for('click_tracker', coded_info = link, _external = True)}}
+
+Regards,
+
+The admin

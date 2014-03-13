@@ -8,7 +8,9 @@
         <h2>Groups</h2>
         {% for group in groups %}
         <ul>
-            <li>{{ group.name }}</li>
+            <li>{{ group.name }}
+                <a href="{{ url_for('email_group', group_id=group.id) }}">e-mail group</a>
+            </li>
             <ul>
                 {% for members in member_lists[group.name] %}
                 <li> {{ members.name }} </li>

@@ -1,7 +1,16 @@
+from flask.ext.mail import Mail
+
 __author__ = 'Linus'
 from flask import (Flask, flash, render_template, session, redirect,
-                   url_for,request, g, jsonify, abort, make_response)
-import database, sqlite3, os, social
+                   url_for, request, jsonify, abort, make_response)
+
+from flask_shorturl import ShortUrl
+import database
+import sqlite3
+import os
+import social
+import mail_service
+import cipher
 
 # configuration
 DATABASE = 'app_db.db'
@@ -10,8 +19,23 @@ USERNAME = 'admin'
 PASSWORD = 'MySuper1337Password'
 HOST = 'localhost'
 
+# email server
+MAIL_SERVER = 'smtp.googlemail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'linus.kortesalmi@gmail.com'
+MAIL_PASSWORD = 'pass'
+
+# administrator list
+ADMINS = ['linus.kortesalmi@gmail.com']
+
+
+
 app = Flask(__name__)
 app.config.from_object(__name__)
+mail = Mail(app)
+su = ShortUrl(app)
 
 # Home page of the website
 @app.route('/')
@@ -85,7 +109,7 @@ def show_signups():
     try:
         # Check if we are logged in this session.
         if not session['logged_in']:
-            Flask.abort(401)
+            abort(401)
         return render_template('show_signups.html', signups=database.get_signups())
     except KeyError:
         # Visualize for the user that something went wrong.
@@ -98,7 +122,7 @@ def create_group():
     try:
         # Check if we are logged in this session.
         if not session['logged_in']:
-            Flask.abort(401)
+            abort(401)
         return render_template('create_group.html', signups=database.get_persons_and_ids())
     except KeyError:
         # Visualize for the user that something went wrong.
@@ -148,6 +172,32 @@ def new_group():
         flash('Group already exists')
         return redirect(url_for('create_group'))
 
+@app.route('/email_group/<string:group_id>')
+def email_group(group_id):
+    try:
+        # Check if we are logged in this session.
+        if not session['logged_in']:
+            abort(401)
+
+        group_name = database.get_group(group_id)['name']
+        members = database.get_group_members(group_name)
+        mail_service.send_information_email(group_id, members)
+        flash('Email sent')
+        return show_groups()
+
+    except KeyError:
+        # Visualize for the user that something went wrong.
+        flash('You need to be logged in to view that page')
+        return redirect(url_for('home'))
+
+@app.route('/user/<string:coded_info>')
+def click_tracker(coded_info):
+    decoded_info = cipher.decrypt_val(coded_info)
+    group_id = decoded_info['group_id']
+    person_id = decoded_info['person_id']
+
+    database.set_email_clicked(group_id, person_id)
+    return redirect(url_for('home'))
 
 
 ###############################################################################
@@ -180,7 +230,7 @@ def resource_not_found(error):
 if __name__ == "__main__":
     # Reset DB?
     if not os.path.isfile(DATABASE):
-        database.init()
+        database.init(app)
 
     app.run(debug=True)
 

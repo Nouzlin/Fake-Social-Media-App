@@ -59,14 +59,14 @@ def get_persons_and_ids():
 
 def is_allowed_name(table_name):
     # Does the table name only consist of alphanumeric characters?
-    return re.match('^[\w-]+$', table_name, flags=re.UNICODE) is not None
+    return re.match('^[\w-]+$', table_name) is not None
 
 def create_new_group(group_name, priority):
     if not is_allowed_name(group_name):
         raise SyntaxError(group_name + " is not an allowed group name")
 
     db = get_db()
-    db.execute('INSERT INTO groups (Name, Priority) VALUES (?, ?)', (group_name, priority))
+    db.execute('INSERT INTO groups (GroupName, Priority) VALUES (?, ?)', (group_name, priority))
     db.execute('CREATE TABLE ' + group_name + ' (Id INT PRIMARY KEY NOT NULL UNIQUE, Answered BOOLEAN DEFAULT FALSE)')
     db.commit()
 
@@ -81,15 +81,22 @@ def add_group_members(group_name, members):
 
     db.commit()
 
-
 def get_groups():
     db = get_db()
-    cursor = db.execute('SELECT Name, Priority FROM groups ORDER BY Id DESC')
+    cursor = db.execute('SELECT GroupName, Priority, Id FROM groups ORDER BY Id DESC')
     groups = list()
     for row in cursor.fetchall():
-        groups.append(dict(name=row[0], priority=row[1]))
+        groups.append(dict(name=row[0], priority=row[1], id=row[2]))
     return groups
 
+def get_group(group_id):
+    db = get_db()
+    print group_id
+    cursor = db.execute('SELECT GroupName, Priority FROM groups WHERE Id = ' + str(group_id))
+    row = cursor.fetchone()
+    print (row)
+    group = dict(name=row[0], priority=row[1])
+    return group
 
 def get_group_members(group_name):
     db = get_db()
@@ -102,5 +109,12 @@ def get_group_members(group_name):
         if not member_info: break
         groups.append(dict(name=member_info[0] + " " + member_info[1],
                            email=member_info[2],
-                           answered=member[1]))
+                           answered=member[1],
+                           id=member[0]))
     return groups
+
+def set_email_clicked(group_id, person_id):
+    group_name = get_group(group_id)['name']
+    db = get_db()
+    db.execute('UPDATE ' + group_name + ' SET Answered = "TRUE" WHERE Id = ' + str(person_id))
+    db.commit()

@@ -18,7 +18,7 @@ create table signups (
 
 create table groups (
     ID integer primary key autoincrement,
-    Name text not null unique,
+    GroupName text not null unique,
     Priority text not null
 );
 

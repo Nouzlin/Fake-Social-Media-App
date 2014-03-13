@@ -36,7 +36,3 @@ def share_story(oath_token):
         "og:description": "Wow much sad",
         "og:type": "linko_lab_three:awesomeness"
         })
-
-
-
-

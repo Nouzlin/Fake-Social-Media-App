@@ -1,5 +1,6 @@
 # coding=utf-8
 from flask import json, jsonify
+import cipher
 
 __author__ = 'Linus'
 
@@ -22,11 +23,13 @@ class FlaskTestCase(unittest.TestCase):
             # JSON Object we expect to get back
             json_test = json.loads("""{ "groups": [
                 {
+                    "id": 1,
                     "name": "Sweden",
                     "priority": "vip"
                 }
             ]}""")
 
+            # Test get_groups(group_name)
             rv = self.app.get('/api/v1.0/groups')  # JSON Object we get back
             self.assertEquals(json.loads(rv.data), json_test)
 
@@ -61,6 +64,7 @@ class FlaskTestCase(unittest.TestCase):
                 {
                     "answered": "FALSE",
                     "email": "linus.kortesalmi@mail.com",
+                    "id": 1,
                     "name": "Linus Kortesalmi"
                 }
             ]}""")
